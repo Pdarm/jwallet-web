@@ -32,19 +32,19 @@ import {
   CONVERT_FUNDS_SET_TO_ACCOUNT_ID,
 } from '../modules/modals/convertFunds'
 
-function* onConvertFundsSetFromAccountId(action: { accountId: AccountId }) {
+function* onConvertFundsSetFromAccountId(action: { accountId: AccountId }): Saga<void> {
   const { accountId } = action
 
   yield setAccount(accountId, CONVERT_FUNDS_SET_FROM_ACCOUNT)
 }
 
-function* onConvertFundsSetToAccountId(action: { accountId: AccountId }) {
+function* onConvertFundsSetToAccountId(action: { accountId: AccountId }): Saga<void> {
   const { accountId } = action
 
   yield setAccount(accountId, CONVERT_FUNDS_SET_TO_ACCOUNT)
 }
 
-function* onSendFunds() {
+function* onSendFunds(): Saga<void> {
   try {
     const sendFundsData = yield select(selectSendFundsModal)
     validateSendFundsData(sendFundsData)
@@ -233,7 +233,7 @@ function* getCurrencyBySymbol(symbol: string) {
   }
 }
 
-function* onReceiveOpenModal() {
+function* onReceiveOpenModal(): Saga<void> {
   const currentAccountId = yield select(selectCurrentAccountId)
 
   if (!currentAccountId) {
